@@ -11,6 +11,7 @@ module Hobo
 
     def self.included(base)
       base.extend(ClassMethods)
+      base.extend(ViewHintExtensions)
 
       register_model(base)
 
@@ -381,11 +382,6 @@ module Hobo
       end
       
       
-      def view_hints
-        class_name = "#{name}Hints"
-        class_name.safe_constantize or Object.class_eval("class #{class_name} < Hobo::ViewHints; end; #{class_name}")
-      end
-
 
     end # --- of ClassMethods --- #
 
